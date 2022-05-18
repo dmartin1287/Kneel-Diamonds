@@ -1,4 +1,5 @@
 import { getMetals, setMetal } from "./database.js"
+
 const metals = getMetals()
 
 document.addEventListener(
@@ -6,9 +7,33 @@ document.addEventListener(
     (event) => {
         if (event.target.name === "metal") {
             setMetal(parseInt(event.target.value))
+            const metal = rightMetal(event.target.value)
         }
     }
 )
+
+
+
+
+document.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.name === "metal") {
+
+            setMetal(parseInt(event.target.value))
+        }
+    }
+)
+
+//this function finds the metal name for a pop up when selected
+const rightMetal = (metalId) => {
+    for (const metal of metals) {
+        if (parseInt(metalId) === metal.id) {
+            return metal.metal
+        }
+    }
+}
+
 export const Metals = () => {
     let html = "<ul>"
 
